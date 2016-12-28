@@ -7,19 +7,11 @@
     "start": "webpack-dev-server --inline --progress --history-api-fallback --hot",
     "build": "webpack --config webpack.config.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zhangdeyu/resume.git"
-  },
   "keywords": [
     "resume"
   ],
   "author": "Derek",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zhangdeyu/resume/issues"
-  },
-  "homepage": "https://github.com/zhangdeyu/resume#readme",
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
     "babel": "^6.5.2",
