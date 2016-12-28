@@ -1,4 +1,6 @@
 <style lang="stylus">
+@import "~font-awesome/css/font-awesome.css"
+@import "~bulma/css/bulma.css"
 #app
     display: flex;
     .name

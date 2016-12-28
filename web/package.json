@@ -1,10 +1,10 @@
 {
-  "name": "resume",
+  "name": "music",
   "version": "1.0.0",
-  "description": "resume",
+  "description": "music",
   "main": "app.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --progress --history-api-fallback --hot",
+    "start": "webpack-dev-server --host 0.0.0.0 --inline --progress --history-api-fallback --hot",
     "build": "webpack --config webpack.config.js"
   },
   "author": "Derek",
@@ -34,8 +34,15 @@
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
+    "bulma": "^0.2.3",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.3",
     "vue": "^2.1.7",
     "vue-router": "^2.1.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
