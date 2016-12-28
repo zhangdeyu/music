@@ -7,9 +7,6 @@
     "start": "webpack-dev-server --inline --progress --history-api-fallback --hot",
     "build": "webpack --config webpack.config.js"
   },
-  "keywords": [
-    "resume"
-  ],
   "author": "Derek",
   "license": "ISC",
   "devDependencies": {
