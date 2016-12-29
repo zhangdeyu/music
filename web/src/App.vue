@@ -1,27 +1,77 @@
 <style lang="stylus">
-@import "~font-awesome/css/font-awesome.css"
 @import "~bulma/css/bulma.css"
+@import "~font-awesome/css/font-awesome.css"
+[class~='fa'] {
+    cursor: pointer
+    &:hover {
+        color: #CC3F4F
+    }
+    &.active {
+        color: #3F51B5
+    }
+}
 #app
-    display: flex;
-    .name
-        background: #cccccc;
-        line-height: 20px;
-        text-align: center;
-        min-width: 60px;
-        height: 20px
+    position: relative
+    nav
+        width: 100%
+        .nav-item
+            flex: 1
+            text-align: center
+            display: inline-block
+            i
+                display: inline-block
+                margin-right: 10px
+    .player
+        position: fixed
+        height: 80px
+        width: 100%
+        bottom: 0
+        left: 0
+        background: rgba(0, 0, 0, 0.85)
+        .container
+            max-width: 980px
+            margin: 0 auto
+            .cover
+                height: 48px
+                margin: 16px 20px 16px 30px
+        .fa
+            color: #FFFFFF
+            height: 80px
+            line-height: 80px
+        .btn
+            .fa:nth-child(2)
+                margin: 0 20px
+            
 </style>
 <template lang="pug">
 #app
-    .name {{name}}
-    input(type="text", v-model="name")
+    nav.nav
+        a.nav-item.is-brand 乐然心动
+        a.nav-item.is-tab.is-active
+            i.fa.fa-globe
+            span 发现音乐
+        a.nav-item.is-tab
+            i.fa.fa-music
+            span 我的音乐
+        span.nav-item
+            i.fa.fa-user
+            i.fa.fa-angle-down
     router-view
+    .player
+        .container.is-clearfix
+            .btn.is-pulled-left
+                a.fa.fa-step-backward.fa-2x
+                a.fa.fa-play-circle-o.fa-3x
+                a.fa.fa-step-forward.fa-2x
+            div.image.is-48x48.is-pulled-left.cover
+                img(src="http://placehold.it/48x48")
 </template>
 <script>
 export default {
     name: 'app',
     data() {
         return {
-            name: 'hello Derek'
+        
         }
     }
 }
