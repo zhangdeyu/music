@@ -31,6 +31,10 @@
         .container
             max-width: 980px
             margin: 0 auto
+            >div
+                display: inline-block
+                float: left
+                height: 80px
             .cover
                 height: 48px
                 margin: 16px 20px 16px 30px
@@ -41,7 +45,22 @@
         .btn
             .fa:nth-child(2)
                 margin: 0 20px
-            
+        .center
+            width: 476px
+            padding: 10px 10px
+            color: #FFFFFF
+            .desc
+                height: 20px
+                line-height: 20px
+                margin-bottom: 3px
+            .progress
+                width: 100%
+            .span
+                width: 20px
+        .timer
+            width: 100px
+            line-height: 80px
+            color: #FFFFFF
 </style>
 <template lang="pug">
 #app
@@ -59,12 +78,19 @@
     router-view
     .player
         .container.is-clearfix
-            .btn.is-pulled-left
+            .btn
                 a.fa.fa-step-backward.fa-2x
                 a.fa.fa-play-circle-o.fa-3x
                 a.fa.fa-step-forward.fa-2x
-            div.image.is-48x48.is-pulled-left.cover
+            div.image.is-48x48.cover
                 img(src="http://placehold.it/48x48")
+            div.center
+                .desc flay away 梁静茹
+                progress.progress.is-primary(max="100", value="15")
+            .timer 01:05/04:00
+            .btn
+                .fa.fa-volume-up
+                .fa.fa-bars
 </template>
 <script>
 export default {
