@@ -68,7 +68,7 @@
 <template lang="pug">
 #app
     nav.nav
-        a.nav-item.is-brand 乐然心动
+        a.nav-item.is-brand 心随乐动
         a.nav-item.is-tab.is-active
             i.fa.fa-globe
             span 发现音乐
