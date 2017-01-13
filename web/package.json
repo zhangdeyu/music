@@ -4,7 +4,7 @@
   "description": "music",
   "main": "app.js",
   "scripts": {
-    "start": "webpack-dev-server --host 0.0.0.0 --inline --progress --history-api-fallback --hot",
+    "start": "webpack-dev-server --host 0.0.0.0 --inline --progress --history-api-fallback --hot --open",
     "build": "webpack --config webpack.config.js"
   },
   "author": "Derek",

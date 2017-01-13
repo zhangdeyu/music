@@ -21,6 +21,9 @@
             i
                 display: inline-block
                 margin-right: 10px
+    .view
+        width: 980px
+        margin: 10px auto 100px
     .player
         position: fixed
         height: 80px
@@ -73,9 +76,10 @@
             i.fa.fa-music
             span 我的音乐
         span.nav-item
-            i.fa.fa-user
+            i.fa.fa-user(@click="showModal()")
             i.fa.fa-angle-down
-    router-view
+    .view
+        router-view
     .player
         .container.is-clearfix
             .btn
@@ -91,13 +95,32 @@
             .btn
                 .fa.fa-volume-up
                 .fa.fa-bars
+    .modal(:class="{'is-active': modalActive}")
+        .modal-background
+        .modal-content
+            .box
+                p.control.has-icon
+                    input.input(type='email', placeholder='Email')
+                    //- span.icon.is-small
+                    //-     i.fa.fa-envelope
+                p.control.has-icon
+                    input.input(type='password', placeholder='Password')
+                    //- span.icon.is-small
+                    //-     i.fa.fa-lock
+                p.control
+                    button.button.is-success Login
 </template>
 <script>
 export default {
     name: 'app',
     data() {
         return {
-        
+            modalActive: false
+        }
+    },
+    methods: {
+        showModal() {
+            this.modalActive = true
         }
     }
 }
