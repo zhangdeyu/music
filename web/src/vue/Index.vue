@@ -23,29 +23,11 @@
                 margin: 0 20px 30px 0
                 display: inline-block
                 float: left
-                >.item-detail
-                    width: 140px
-                    height: 140px
-                    position: relative
-                    img
-                       width: 140px
-                       height: 140px
-                    .icons
-                        height: 20px
-                        line-height: 20px
-                        width: 140px
-                        position: absolute
-                        bottom: 0px
-                        left: 0px
-                        .fa
-                            vertical-align: center 
-                            &.fa-play
-                                float: right
 </style>
 <template lang="pug">
 #index-view
     .top
-        slides
+        slides(:items="banners")
         .profile
             .user-info
                 img(src="http://p4.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg?param=80y80")
@@ -53,21 +35,36 @@
     .recommend
         .title 热门推荐
         .lists.is-clearfix
-            .item
-                .item-detail
-                    img(src="http://p3.music.126.net/trG8Pan0oDCW-sWNqMyogg==/109951162841228618.jpg?param=140y140")
-                    .icons
-                        .fa.fa-headphones
-                        | 45万
-                        .fa.fa-play
-                .item-title 『华语』我曾经最骄傲的事，就是爱过你
+            card.item
+            card.item
+            card.item
 </template>
 <script>
 import slides from './components/slides.vue'
+import card from './components/card.vue'
 export default {
     name: 'index',
     components: {
-        slides
+        slides,
+        card
+    },
+    data() {
+        return {
+            banners: [
+                {
+                    link: null,
+                    img: 'http://p3.music.126.net/mVMRafifNK3-jfPM8ZBsMg==/18779658604187868.jpg'
+                },
+                {
+                    link: null,
+                    img: 'http://p3.music.126.net/ZuCqwp-IwhYtVgS6K39hSA==/18558656766932473.jpg'
+                },
+                {
+                    link: null,
+                    img: 'http://p3.music.126.net/BeCCsLLXYTlyvcMfTXmQfA==/18678503535036482.jpg'
+                }
+            ]
+        }
     }
 }
 </script>

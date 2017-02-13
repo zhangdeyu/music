@@ -12,21 +12,49 @@
             left: 0
         &.right
             right: 0
-    .item
+    .item, img
         width: 730px
         height: 336px
 </style>
 <template lang="pug">
 .slides
     .operation.left
-        .fa.fa-chevron-left.fa-4x
+        .fa.fa-chevron-left.fa-4x(@click="slide('prev')")
     .item
-        img(src="http://p3.music.126.net/ZuCqwp-IwhYtVgS6K39hSA==/18558656766932473.jpg")
+        a(:href="curData.link")
+            img(:src="curData.img")
     .operation.right
-        .fa.fa-chevron-right.fa-4x
+        .fa.fa-chevron-right.fa-4x(@click="slide('next')")
 </template>
 <script>
 export default {
-    name: 'slides'
+    name: 'slides',
+    props: {
+        items: {
+            type: Array,
+            required: true
+        }
+    },
+    data() {
+        return {
+            cur: 0,
+            curData: this.items[0]
+        }
+    },
+    methods: {
+        slide(dir) {
+            const index = dir === 'prev' ? 
+            (
+                this.cur - 1 > 0 ? (this.cur - 1) : (this.items.length - 1) 
+            )
+            :
+            (
+                this.cur + 1 >= this.items.length ? 0 : (this.cur + 1)
+            )
+
+            this.curData = this.items[index]
+            this.cur = index
+        }
+    }
 }
 </script>
