@@ -1,53 +1,61 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const path = require('path');
+const _ = require('lodash');
 
 const config = {
     entry: './src/app.js',
     output: {
         filename: 'bundle.js',
-        path: './build'
+        path: path.resolve(__dirname, "dist")
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue'
+                loader: 'vue-loader',
+                options: {
+                    postcss: [require('autoprefixer')(), require('postcss-pxtorem')()]
+                }
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015'],
-                    plugins: ['transform-runtime']
-                }
+                loader: "babel-loader"
             },
             {
-                test: /\.scss$/,
-                loader: 'style!css!autoprefixer!sass'
-            }, 
-            {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url'
-            }, 
+                loader: 'url-loader'
+            },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url'
+                loader: 'url-loader'
             }
 
         ]
     },
-    vue: {
-        loaders: {
-            'stylus': 'vue-style-loader!css-loader!autoprefixer-loader?browsers=last 2 version!stylus-loader',
-            'scss': 'vue-style-loader!css-loader!autoprefixer-loader?browsers=last 2 version!sass-loader',
-            'sass': 'vue-style-loader!css-loader!autoprefixer-loader?browsers=last 2 version!sass-loader?indentedSyntax'
+    resolve: {
+        modules: ["src", "node_modules"],
+        alias: {
+            style: path.resolve(__dirname, 'src/style')
         }
     },
     plugins: [
-        new HtmlWebpackPlugin({template: './index.html'})
+        new HtmlWebpackPlugin({
+            template: './index.html',
+            hash: true
+        })
     ],
     devtool: '#eval-source-map'
 };
+if (process.env.NODE_ENV === 'production') {
+    config.plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+          compress: {
+            warnings: false
+          }
+        })
+    );
+}
 
 module.exports = config;
