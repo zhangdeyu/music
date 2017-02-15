@@ -61,7 +61,7 @@
                     button.button.is-danger(@click="hideModal()") Cancle
 </template>
 <script>
-import player from 'vue/components/player.vue'
+import player from 'vue/components/Player.vue'
 export default {
     name: 'app',
     components: {
