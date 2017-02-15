@@ -40,8 +40,8 @@
             card.item
 </template>
 <script>
-import slides from './components/slides.vue'
-import card from './components/card.vue'
+import slides from './components/Slides.vue'
+import card from './components/Card.vue'
 export default {
     name: 'index',
     components: {
