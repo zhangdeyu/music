@@ -59,18 +59,19 @@
         background: rgba(0, 0, 0, 0.8)
         border-radius: 10px 10px 0 0
         padding: 10px
+        color: #FFFFFF
 </style>
 <template lang="pug">
 .player
     audio#audio(:src="audios[currentIndex].src")
     .container.is-clearfix
         .btn
-            a.fa.fa-step-backward.fa-2x(@click="prev()")
+            a.fa.fa-step-backward.fa-2x(@click.stop="prev()")
             template(v-if="playing")
-                a.fa.fa-pause-circle-o.fa-3x(@click="play()")
+                a.fa.fa-pause-circle-o.fa-3x(@click.stop="play()")
             template(v-else)
-                a.fa.fa-play-circle-o.fa-3x(@click="play()")
-            a.fa.fa-step-forward.fa-2x(@click="next()")
+                a.fa.fa-play-circle-o.fa-3x(@click.stop="play()")
+            a.fa.fa-step-forward.fa-2x(@click.stop="next()")
         div.image.is-48x48.cover
             img(:src="audios[currentIndex].img || 'http://placehold.it/48x48'")
         div.center
@@ -81,7 +82,11 @@
             .fa.fa-volume-up(@click="showVolume = !showVolume")
             .fa.fa-bars
             input(v-if="showVolume",type="range", v-model="volume", @change="setVolume", min="0.0", max="1.0", step="0.1")
-    .play-list xxx
+    .play-list
+        ul
+            li(v-for="audio, index in audios", @click="changeMusic(index)")
+                span {{audio.title}}
+                span -{{audio.author}}
 </template>
 <script>
 export default {
@@ -166,6 +171,7 @@ export default {
 
             this.audio.currentTime = newTime
             this.audio.oncanplay = () => {
+                this.audio.pause()
                 this.play()
             }
         },
@@ -181,6 +187,7 @@ export default {
             this.changeMusic()
         },
         changeMusic(index = this.currentIndex){
+            this.currentIndex = index
             this.audio.src = this.audios[index].src
             this.audio.pause()
             this.audio.currentTime = 0
